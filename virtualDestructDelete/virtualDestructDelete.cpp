@@ -28,13 +28,17 @@ class derive :public base
 {
 	public:
 		derive()
+			:test(new int)
 		{
 			cout<<"this is derive construct funciton \n" <<endl;
 		}
 		~derive()
 		{
+			delete test;
 			cout<<"this is derive deconstruct funciton \n" <<endl;
 		}
+	private:
+		int *test;
 };
 
 int main()
