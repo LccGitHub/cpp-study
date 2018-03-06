@@ -11,15 +11,15 @@ class Base
 		Base(string name)
 			:name(name)
 		{
-			cout<<name<<"create "<<endl;
+			cout<<name<<" create "<<endl;
 		}
 		~Base()
 		{
-			cout<<name<<"destroy "<<endl;
+			cout<<name<<" destroy "<<endl;
 		}
 		void print()
 		{
-			cout<<name<<" ";
+			cout<<name<<" "<<endl;
 		}
 	private:
 		string name;
@@ -69,13 +69,14 @@ int main()
 	shared_ptr<Base> shared_b2 = shared_b1; /*reference count will +1, only when reference count= 0, will call decontruct function*/
 	shared_b1->print();
 	
-	auto_ptr<Base> auto_b1 = (auto_ptr<Base>)(new Base("auto ptr"));
+	auto_ptr<Base> auto_b1(new Base("auto ptr"));
 	auto_ptr<Base> auto_b2 = auto_b1; /*b1 will changed null ptr*/
 	auto_b1->print(); /*this will core dump*/
 
 	unique_ptr<Base> unique_b1(new Base("unique ptr"));
 	unique_ptr<Base> unique_b2 = unique_b1; /* compile error, <use of delete function>*/
 	unique_b1->print();
+
 
 	unique_ptr<double[]> auto_b1_array(new double(5)); /* unique_ptr相较auto_ptr和share_ptr，提供了可用于数组的变体*/
 	
