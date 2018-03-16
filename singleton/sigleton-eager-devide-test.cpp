@@ -15,6 +15,11 @@ class Singleton
 		{
 			cout<<"Singlton construct"<<endl;
 		}
+		/*when call Singleton::instance(), deconstruct will not be called when end*/
+		~Singleton()
+		{
+			cout<<"Singlton deconstruct"<<endl;
+		}
 
 	public:
 		static Singleton* instance();
@@ -28,17 +33,19 @@ Singleton* Singleton::instance()
 {
 	return p;
 }
-
+#if 1
 class derived: public Singleton
 {
 	public:
 		derived(){
 			cout<<"derived construct"<<endl;
 		}
-		~derived(){}
+		~derived(){
+			cout<<"derived deconstruct"<<endl;
+		}
 };
 
-
+#endif
 
 int main()
 {
